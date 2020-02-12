@@ -1,7 +1,7 @@
 import abc
 
 class UserBase(abc.ABC):
-    def __init__(self,cui,telefono,nombre,nit):
+    def __init__(self,cui,telefono,nombre,nit,*args,**kwargs):
         self.cui = cui
         self.telefono = telefono
         self.nombre = nombre
@@ -14,12 +14,13 @@ class UserBase(abc.ABC):
         return "imprimir behavior"
 
 class AbstractUser(abc.ABC):
-    def __init__(self,username,first_name,last_name,email,password):
+    def __init__(self,username,first_name,last_name,email,password,*args,**kwargs):
         self.username = username
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
         self.password = password
+        print(self.username,self.password)
     
     def set_password(self,old_password,new_password):
         if self.password == old_password:
@@ -29,7 +30,7 @@ class AbstractUser(abc.ABC):
             return False
 
     def get_full_name(self):
-        return self.first_name + self.last_name
+        return self.first_name + ' ' +self.last_name
 
     def login(self,username,password):
         if self.username == username and self.password == password:
